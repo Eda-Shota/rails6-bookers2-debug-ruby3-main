@@ -1,0 +1,12 @@
+<% if Favorite.find_by(user_id: current_user.id, post_id: book.id) %>
+  <%= link_to book_favorites_path(book.id), method: :delete do %>
+    <i class="fas fa-heart" style="color:red;"></i>
+    <span class="text-danger"><%= Favorite.where(post_id: book.id).count %></span>
+  <% end %>
+<% else %>
+  <%= link_to book_favorites_path(book.id), method: :POST do %>
+    <i class="fas fa-heart"></i>
+    <%= Favorite.where(post_id: book.id).count %>
+  <% end %>
+<% end %>
+
